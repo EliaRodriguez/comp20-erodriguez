@@ -1,0 +1,69 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>My Old Kentucky Home</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+<h1 id="title">My Old Kentucky Home</h1>
+
+<video src="https://www.cs.tufts.edu/comp/20/my_old_kentucky_home.mp4" id="music_video" controls></video>
+<div id="lyrics"></div>
+<script>
+    var lyrics = document.getElementById('lyrics');
+	var video = document.getElementById('music_video');
+
+video.addEventListener('timeupdate', function() {
+    console.log(this.currentTime);
+		if (this.currentTime > 7 && this.currentTime < 13 ) {
+			lyrics.innerHTML = '<h2>The sun shines bright in My Old Kentucky Home,</h2><p><img src="poster.jpg" alt="Image" /><p>';
+			}
+		else if (this.currentTime > 14 && this.currentTime < 20 ) {
+			lyrics.innerHTML = '<h2>’Tis summer, the people are gay; </h2>';
+			}
+		else if (this.currentTime > 20 && this.currentTime < 26 ) {
+			lyrics.innerHTML = "<h2>The corn-top's ripe and the meadow's in the bloom</h2>";
+			}
+		else if (this.currentTime > 27 && this.currentTime < 33.5 ) {
+			lyrics.innerHTML = '<h2>While the birds make music all the day.</h2>';
+			}
+		else if (this.currentTime > 33.5 && this.currentTime < 41 ) {
+			lyrics.innerHTML = '<h2>The young folks roll on the little cabin floor, </h2>';
+			}
+		else if (this.currentTime > 41.5 && this.currentTime < 48 ) {
+			lyrics.innerHTML = '<h2>All merry, all happy and bright;</h2>';
+			}
+		else if (this.currentTime > 48.5 && this.currentTime < 54 ) {
+			lyrics.innerHTML = "<h2>By 'n' by hard times comes a knocking at the door,</h2>";
+			}
+		else if (this.currentTime > 54 && this.currentTime < 62 ) {
+			lyrics.innerHTML = '<h2>Then My Old Kentucky Home, good night!</h2>';
+			}
+		else if (this.currentTime > 63 && this.currentTime < 69 ) {
+			lyrics.innerHTML = '<h2>Weep no more my lady</h2>';
+			}
+		else if (this.currentTime > 69 && this.currentTime < 74.5 ) {
+			lyrics.innerHTML = '<h2>Oh weep no more today;</h2>';
+			}
+		else if (this.currentTime > 74.5 && this.currentTime < 78.5 ) {
+			lyrics.innerHTML = '<h2>We will sing one song</h2>';
+			}
+		else if (this.currentTime > 79 && this.currentTime < 83.5 ) {
+			lyrics.innerHTML = '<h2>For My Old Kentucky Home</h2>';
+			}
+		else if (this.currentTime > 83.5 && this.currentTime < 93 ) {
+			lyrics.innerHTML = '<h2>For My Old Kentucky Home, far away</h2><p><img src="kentucky_home.jpg" alt="Image" /><p>';
+			}												
+        else {
+            lyrics.innerHTML = "";
+            } 
+		}, false);
+
+</script>
+</body>
+</html>	
