@@ -3,11 +3,11 @@ function parse(){
 	var xml = new XMLHttpRequest();
 	xml.open("GET","data.json",true);
 	xml.onreadystatechange = function(){
-		if (this.readyStat == 4 && this.status == 200){
+		if (this.readyState == 4 && this.status == 200){
 			var data = JSON.parse(this.responseText);
 			newData = "";
 			for (i = 0; i < data.length; i++){
-				newData += data[i].content + '<span class="username">' + data[i].username + '</span>' + '<br/>'
+				newData += '<div class="style">' + data[i].content + " " + '<span class="username">' + data[i].username + '</span>' + '</div> <br>'
 			};
 			document.getElementById('messages').innerHTML = newData;
 		}
