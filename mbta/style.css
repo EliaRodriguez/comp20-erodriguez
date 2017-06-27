@@ -1,0 +1,21 @@
+/* Note, this code was taken from Prof. Ming Chow */
+
+html {
+	height: 100%;
+	font-family: Helvetica, "Helvetica Neue", Arial, sans-serif;
+}
+
+img {
+    size: 20px;
+}
+
+body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+#map {
+	width: 100%;
+	height: 100%;
+}
