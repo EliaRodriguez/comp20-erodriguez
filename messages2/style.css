@@ -1,1 +1,8 @@
 /* Your CSS here... */
+body {font-family: Helvetica, 'Lucida Grande', Arial, sans-serif;}
+
+h1 {font-weight: bold;}
+
+#messages {background-color: #5DD2F7; border-radius: 5px 15px; padding: 10px; width: 350px; height: 10px; display: table-cell; vertical-align: middle;}
+
+.username {vertical-align: sub; font-size: smaller;}
