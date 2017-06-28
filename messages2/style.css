@@ -1,7 +1,7 @@
 /* Your CSS here... */
 body {font-family: Helvetica, 'Lucida Grande', Arial, sans-serif;}
 
-h1 {font-weight: bold; border-bottom: groove;background-image: url('message_icon.png'); background-repeat: no-repeat; padding-left: 43px; display:block;}
+h1 {font-size: 36px; font-weight: bold; border-bottom: groove;background-image: url('message_icon.png'); background-repeat: no-repeat; padding-left: 43px; display:block; vertical-align: middle; padding-bottom: 5px;}
 
 .username {vertical-align: sub; font-size: smaller;}
 
