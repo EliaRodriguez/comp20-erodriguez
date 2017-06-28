@@ -14,7 +14,7 @@ function initMap(){
 
   var marker = new google.maps.Marker({
     position: southstation,
-    setMap: map
+    map: map
   })    
 
     // var image = {
@@ -41,7 +41,7 @@ function initMap(){
   //         postion: station,
   //         setMap: map,
   //         // icon: image,
-  //         // title: name,
+  //         title: name
   //     });
 
   // };  
@@ -79,7 +79,7 @@ function initMap(){
 };
 
 
-
+// google.maps.event.addDomListener('viewport', 'load', initialize);
 
 
 // function getMyLocation() {
