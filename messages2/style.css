@@ -1,6 +1,8 @@
 /* Your CSS here... */
 body {font-family: Helvetica, 'Lucida Grande', Arial, sans-serif;}
 
+/* icon formatting referenced from https://stackoverflow.com/questions/735394/add-image-to-left-of-text-via-css
+and icon was from http://www.freeiconspng.com/images/message-icon-png */
 h1 {font-size: 36px; font-weight: bold; border-bottom: groove;background-image: url('message_icon.png'); background-repeat: no-repeat; padding-left: 43px; display:block; vertical-align: middle; padding-bottom: 5px;}
 
 .username {vertical-align: sub; font-size: smaller;}
