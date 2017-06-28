@@ -1,12 +1,13 @@
-
+  
 
 function initMap(){
+  var southstation = new google.maps.LatLng(42.352271, -71.05524200000001);
   var mainbranch = [{lat:42.395428,lng:-71.142483},{lat:42.39674,lng:-71.121815},{lat:42.3884,lng:-71.11914899999999},{lat:42.373362,lng:-71.118956},{lat:42.365486,lng:-71.103802},{lat:42.36249079,lng:-71.08617653},{lat:42.361166,lng:-71070628},{lat:42.35639457,lng:-71.0624242},{lat:42.355518,lng:-71.060225},{lat:42.352271,lng:-71.05524200000001},{lat:42.342622,lng:-71.056967},{lat:42.330154,lng:-71.057655},{lat:42.320685,lng:-71.052391}];
   var fork_one = [{lat:42.320685,lng:-71.052391},{lat:42.275275,lng:-71.029583},{lat:42.2665139,lng:-71.0203369},{lat:42.251809,lng:-71.005409},{lat:42.233391,lng:-71.007153},{lat:42.2078543,lng:-71.0011385}];
   var fork_two = [{lat:42.320685,lng:-71.052391},{lat:42.31129,lng:-71.053331},{lat:42.300093,lng:-71.061667},{lat:42.29312583,lng:-71.06573796000001},{lat:42.284652,lng:-71.06448899999999}];
   var all = [{id:"Alewife",lat:42.395428,lng:-71.142483},{id:"Davis",lat:42.39674,lng:-71.121815},{id:"Porter Square",lat:42.3884,lng:-71.11914899999999},{id:"Harvard Square",lat:42.373362,lng:-71.118956},{id:"Central Square",lat:42.365486,lng:-71.103802},{id:"Kendall/MIT",lat:42.36249079,lng:-71.08617653},{id:"Charles/MGH",lat:42.361166,lng:-71070628},{id:"Park Street",lat:42.35639457,lng:-71.0624242},{id:"Downtown Crossing",lat:42.355518,lng:-71.060225},{id:"South Station",lat:42.352271,lng:-71.05524200000001},{id:"Broadway",lat:42.342622,lng:-71.056967},{id:"Andrew",lat:42.330154,lng:-71.057655},{id:"JFK/UMass",lat:42.320685,lng:-71.052391},{id:"North Quincy",lat:42.275275,lng:-71.029583},{id:"Wollaston",lat:42.2665139,lng:-71.0203369},{id:"Quincy Center",lat:42.251809,lng:-71.005409},{id:"Quincy Adams",lat:42.233391,lng:-71.007153},{id:"Braintree",lat:42.2078543,lng:-71.0011385},{id:"Savin Hill",lat:42.31129,lng:-71.053331},{id:"Fields Corner",lat:42.300093,lng:-71.061667},{id:"Shawmut",lat:42.29312583,lng:-71.06573796000001},{id:"Ashmont",lat:42.284652,lng:-71.06448899999999}]; 
-  var southstation = new google.maps.LatLng(42.352271, -71.05524200000001);
-    
+
+
   var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
           center: southstation
@@ -15,7 +16,9 @@ function initMap(){
   var marker = new google.maps.Marker({
     position: southstation,
     map: map
-  })    
+  });
+
+
 
     // var image = {
     //   url: 'tsign.jpg',
@@ -32,17 +35,18 @@ function initMap(){
     //       type: 'poly'
     // };
 
-  // for (var i = 0; i < all.length; i++) {
-  //     var marker_lat = all[i].lat;
-  //     var marker_lng = all[i].lng;
-  //     station = new google.maps.LatLng(marker_lat, marker_lng);
-  //     var name = all[i].id;
-  //     var marker = new google.maps.Marker({
-  //         postion: station,
-  //         setMap: map,
+  // var markers = [];
+
+  // for (var i = 0; i < all.length; i++) 
+  //     var new_marker_latlng = {all.lat, all.lng};
+  //     // var name = all[i].id;
+  //     var station = new google.maps.Marker({
+  //         postion: new_marker_latlng,
+  //         map: map
   //         // icon: image,
-  //         title: name
+  //         // title: name
   //     });
+  //     markers.push(station);
 
   // };  
 
@@ -77,6 +81,9 @@ function initMap(){
 
         // getMyLocation(map); 	
 };
+
+
+ 
 
 
 // google.maps.event.addDomListener('viewport', 'load', initialize);
