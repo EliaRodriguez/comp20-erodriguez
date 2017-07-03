@@ -1,4 +1,5 @@
-var map, mainbranch, fork_one, fork_two, all, southstation, infoWindow, marker;             
+var map, mainbranch, fork_one, fork_two, all, southstation, marker;   
+        
 
 function initMap(){
   var southstation = new google.maps.LatLng(42.352271, -71.05524200000001);
@@ -36,8 +37,9 @@ function initMap(){
   {"id":"Ashmont", "lat":42.284652, "lng":-71.06448899999999}
   ]; 
 
-// For loop rendering markers on Redline. Working version referenced from example on Github by Professor Ming Chow
+ // For loop rendering markers on Redline. Working version referenced from example on Github by Professor Ming Chow
   var allMarkers = [];
+  var infowindow = new google.maps.InfoWindow();
 
   for (var i = 0; i < all.length; i++) {
     marker = new google.maps.Marker({
@@ -45,11 +47,61 @@ function initMap(){
       title: all[i].id,
       icon: 'icon1.png'
     });
+    google.maps.event.addListener(marker, 'click', function() {
+      var theMarker = this;
+      var data = new XMLHttpRequest();
+      data.open('GET','https://protected-garden-71486.herokuapp.com/redline.json', true);
+      data.onreadystatechange = function() {
+        if(data.readyState == 4 && data.status == 200){
+          schedule = JSON.parse(data.responseText);
+          var text = '<h1>' + theMarker.getTitle() + '</h1><ul>';
+          var entries = [];
+          for (var trip = 0; trip < schedule.TripList.Trips.length; trip++) {
+            destination = schedule.TripList.Trips[trip].Destination;
+            for (var stop = 0; stop < schedule.TripList.Trips[trip].Predictions.length; stop++) {
+              if (schedule.TripList.Trips[trip].Predictions[stop].Stop = theMarker.getTitle()) {
+                entries.push({'destination':destination,'predicted_arrival':schedule.TripList.Trips[trip].Predictions[stop].Seconds});
+              }
+            }
+          }
+
+          function compare(a, b) {
+            if(a.predicted_arrival < b.predicted_arrival) {
+              return -1;
+            }
+            if(a.predicted_arrival > b.predicted_arrival) {
+              return 1;
+            }
+            return 0;
+          }
+          entries.sort(compare);
+          if(entries.length == 0) {
+            text += '<li>No upcoming trains.</li>';
+          }
+          else {
+            for(var count = 0; count < entries.length; count++) {
+              text += '<li>Next ' + entries[count].destination + ' bound train will arrive in approximately ' + Math.trunc(entries[count].predicted_arrival/60) + ' min.</li>';
+            }
+          }
+          text += '</ul';
+          infowindow.setContent(text);
+          infowindow.open(map, theMarker);
+        }
+        else if(data.readyState == 4 && data.status == 500) {
+          infowindow.setContent('Error');
+          infowindow.open(map, marker);
+        }
+      }
+      data.send();
+    });
     allMarkers.push(marker);
     marker.setMap(map);
+    
   }
 
-// Render polylines mapping Redline. Reference google developers code. 
+  getMyLocation();
+
+ // Render polylines mapping Redline. Reference google developers code. 
   var mainbranchPath = new google.maps.Polyline({
     path: mainbranch,
     geodesic: true,
@@ -78,43 +130,50 @@ function initMap(){
   fork_two_Path.setMap(map);
 
 
-  var infowindow = new google.maps.InfoWindow();
-  if (navigator.geolocation) { 
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var myLat = position.coords.lat;
-      var myLng = position.coords.lng;
-      var pos = new google.maps.LatLng(myLat,myLng);
-      // var pos = {myLat,myLng};
-      // infoWindow.setPosition(pos);
-      // infoWindow.open(map);
-    var marker = new google.maps.Marker({
-      position: pos,
-      map: map,
-      title: "My Location"      
-      });
-    });
-      
-  }
-  else {
-    alert("Geolocation is not supported by your web browser.");
-  }
+};
 
+function getMyLocation() {
+ if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position){
+      myLat = position.coords.latitude;
+      myLng = position.coords.longitude;
+      updateMap();
+    });
+ }
+ else {
+    alert('Geolocation is not supported by your browser.');
+ }
+};
+
+
+function updateMap() {
+  me = new google.maps.LatLng(myLat,myLng);
+  map.panTo(me);
+  var closestStation = allMarkers[0];
+  var closestDistance = google.maps.geometry.spherical.computeDistanceBetween(myLocation,closestStation.getPosition());
+  for(var count = 1; count < allMarkers.length; count++) {
+    var tDist = google.maps.geometry.spherical.computeDistanceBetween(myLocation,allMarkers[count].getPosition());
+    if(closestDistance > tDist) {
+      closestDistance = tDist;
+      closestStation = allMarkers[count];
+    }
+  }
+  marker = new google.maps.Marker({
+    position: myLocation,
+    title: 'The closest MBTA Redline station is ' + closestStation.getTitle() + ' which is ' + closestDistance*0.000621371 + ' miles away.'
+  });
+  marker.setMap(map);
+  infowindow.setContent(marker.title);
+  infowindow.open(map, marker);
+  var closestPath = new google.maps.Polyline({
+    path: [myLocation, closestStation.getPosition()],
+    geodesic: true,
+    strokeColor: '#FF0000',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+  closestPath.setMap(map);
 
 };
 
 
-
-
-
-
-
-// function findClosestStation() { // How do I make this so that this only selects the marker with mylocation???
-// 	var closestStation = 0;
-// 	var distances = [];
-// 	for (var i = 0; i < all_parse.length; i++) {	
-// 		var a = new.google.maps.LatLng(all_parse[i].lat,all_parse[i].lng);
-// 		var b = google.maps.geometry.spherical.computeDistanceBetween(myPosition,a);
-// 		distances.push(b);
-// 	};	
-// 	var stuff = "";
-// };
