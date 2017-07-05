@@ -1,9 +1,9 @@
-var map, mainbranch, fork_one, fork_two, all, southstation, marker;   
+var map, mainbranch, fork_one, fork_two, all, southstation, marker, allMarkers, infowindow;   
         
 
 function initMap(){
   var southstation = new google.maps.LatLng(42.352271, -71.05524200000001);
-  var map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
           center: southstation
   }); 
@@ -38,8 +38,8 @@ function initMap(){
   ]; 
 
  // For loop rendering markers on Redline. Working version referenced from example on Github by Professor Ming Chow
-  var allMarkers = [];
-  var infowindow = new google.maps.InfoWindow();
+  allMarkers = [];
+  infowindow = new google.maps.InfoWindow();
 
   for (var i = 0; i < all.length; i++) {
     marker = new google.maps.Marker({
@@ -135,9 +135,9 @@ function initMap(){
 function getMyLocation() {
  if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position){
-      myLat = position.coords.latitude;
-      myLng = position.coords.longitude;
-      updateMap();
+      var myLat = position.coords.latitude;
+      var myLng = position.coords.longitude;
+      updateMap(myLat, myLng);
     });
  }
  else {
@@ -146,9 +146,9 @@ function getMyLocation() {
 };
 
 
-function updateMap() {
-  me = new google.maps.LatLng(myLat,myLng);
-  map.panTo(me);
+function updateMap(myLat, myLng) {
+  myLocation = new google.maps.LatLng(myLat,myLng);
+  map.panTo(myLocation);
   var closestStation = allMarkers[0];
   var closestDistance = google.maps.geometry.spherical.computeDistanceBetween(myLocation,closestStation.getPosition());
   for(var count = 1; count < allMarkers.length; count++) {
