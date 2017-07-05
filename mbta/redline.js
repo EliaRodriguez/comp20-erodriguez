@@ -50,7 +50,7 @@ function initMap(){
     google.maps.event.addListener(marker, 'click', function() {
       var theMarker = this;
       var data = new XMLHttpRequest();
-      data.open('GET','https://protected-garden-71486.herokuapp.com/redline.json', true);
+      data.open('GET','https://guarded-plateau-51589.herokuapp.com/redline.json', true);
       data.onreadystatechange = function() {
         if(data.readyState == 4 && data.status == 200){
           schedule = JSON.parse(data.responseText);
