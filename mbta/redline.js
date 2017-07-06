@@ -59,7 +59,7 @@ function initMap(){
           for (var trip = 0; trip < schedule.TripList.Trips.length; trip++) {
             destination = schedule.TripList.Trips[trip].Destination;
             for (var stop = 0; stop < schedule.TripList.Trips[trip].Predictions.length; stop++) {
-              if (schedule.TripList.Trips[trip].Predictions[stop].Stop = theMarker.getTitle()) {
+              if (schedule.TripList.Trips[trip].Predictions[stop].Stop === theMarker.getTitle()) {
                 entries.push({'destination':destination,'predicted_arrival':schedule.TripList.Trips[trip].Predictions[stop].Seconds});
               }
             }
