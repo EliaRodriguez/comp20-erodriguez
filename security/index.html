@@ -35,12 +35,25 @@
 
 		<div>
 			<h4 class='sections'>Issues Found</h4>
-			<
+			<h5><span class='issues'>Issue: Cross-Site Scripting</span><span class='rating'>Severity: High</span></h5>
+				<ul><li><span class='subheading'>Location:</span> POST route in server</li>
+					<li><span class="subheading">Description:</span> The problem was found by reading the source code and scanning for vulnerabilities. I noticed that one of the entries into the database, the login parameter, is not encoded or checked for suspicious characters. I then used curl to input javascript code into the login parameter. This script was sent to the server and executed by the website. You can see I entered an alert displaying "give me your money," an image, and was able to redirect the web page using javascript.  </li>
+					<li>The severity of this issue is high, because the function of this website can be severly compromised, and due to the storage of this malicious script or html using MongoDB, the issue is persistent. That is, that is, since the database is not cleared after the page is refreshed or the server restarted, the malicious scripts run each type the page is refreshed.</li>
+					<li>This issue can be resolved by encoding and isolating the login input. Verification of the data can prevent the web application from running script and html submitted by the user.</li>
+				</ul>
+			<h6><span class='issues'>Issue: SQL Injection</span><span class='rating'>Severity: High</span></h6>
+				<ul><li><span class='subheading'>Location:</span> GET 'checkins.json'</li>
+					<li><span class="subheading">Description:</span> Although this vulnerability is not confirmed, another classmate mentioned an injection vulnerability that allows the user to see a list of all users and checkins instead of empty brackets. This could possibly occur by manipulating the GET route for '/checkins.json' and sending malicious script using the appropriate curl commands in the terminal.</li>
+					<li>The severity of this issue is high, because potentially sensitive and personal user information could be stolen and shown to the public.</li>
+					<li>This issue can be probably be resolved by not allowing the route to accept any data not from the same origin.</li>
+				</ul>				
 		</div>
 
 
 		<div>
-			<h5 class='sections'>Conclusion</h5>
+			<h7 class='sections'>Conclusion</h5>
+			<p>Incoming data should always be encoded and isolated from the rest of the web application's code in order to remove any malicious script. The client should make sure that users can only input data in the appropriate routes.
+			</p>
 		</div>
 
 	</body>
