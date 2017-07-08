@@ -21,16 +21,21 @@
 
 		<div>
 			<h2 class='sections'>Methodology</h2>
+			<p>The web application was tested using two methods: black box and white box testing. No further methods or tools were used.</p>
+			<p>The black box test method was completed first, and consisted of sending the server malicious script through the terminal and the url string query. The black box method was unsuccessful, and the second method - the white box test - was completed. </p>
+			<p>During white box testing, the source code (server-vuln.js and package.json) was downloaded and reviewed for any vulnerabilities. Portions of code that were suspected to be vulnerable to hacking were targeted for attack when the web application was opened. These attacks were sent using javascript's curl.</p>
 		</div>
 
 
 		<div>
 			<h3 class='sections'>Abstract of Findings</h3>
+			<p>The main vulnerability of the web application is that user input is not scanned for malicious script. When one checks in to the web application, the user can enter any text or script that they would like into the web application. This script, submitted by the user, is also not isolated from the rest of the code, so the web application runs and executes this code, interfering with the website's function. I also suspect that there is a vulnerability regarding the ability for one user to see all other user's data, but further testing needs to be done to prove this. </p>
 		</div>
 
 
 		<div>
 			<h4 class='sections'>Issues Found</h4>
+			<
 		</div>
 
 
