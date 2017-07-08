@@ -1,0 +1,17 @@
+body {font-family: Helvetica, Arial, sans-serif; font-size: 15px;}
+
+header {font-size: 25px; font-weight: bold; background-color: #1F85F3; padding: 6px;}
+
+#subheading {font-size: 13px;}
+
+.sections {font-size: 18px; font-weight: bold; border-bottom: solid;}
+
+li { margin: 1em 0;}
+
+#colororange {font-size: 17px; font-weight: bold; color: white; background-color: orange; padding: 3px;}
+
+#colorred {font-size: 17px; font-weight: bold; color: white; background-color: red; padding: 3px;}
+
+.rating {float: right;}
+
+img {display: block; margin: 0 auto;}
